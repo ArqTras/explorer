@@ -13,21 +13,21 @@ if (WIN32)
 endif()
 
 
-if (NOT MONERO_DIR)
-    set(MONERO_DIR ~/e)
+if (NOT ARQMA_DIR)
+    set(ARQMA_DIR ~/arqma)
 endif()
 
-message(STATUS MONERO_DIR ": ${MONERO_DIR}")
+message(STATUS ARQMA_DIR ": ${ARQMA_DIR}")
 
-if (NOT MONERO_SOURCE_DIR)
-    set(MONERO_SOURCE_DIR ${MONERO_DIR}
-          CACHE PATH "Path to the root directory for Monero")
+if (NOT ARQMA_SOURCE_DIR)
+    set(ARQMA_SOURCE_DIR ${ARQMA_DIR}
+          CACHE PATH "Path to the root directory for Arqma")
 endif()
 
-if (NOT MONERO_BUILD_DIR)
-    # set location of monero build tree
-    set(MONERO_BUILD_DIR ${MONERO_SOURCE_DIR}/build/Linux/master/release/
-          CACHE PATH "Path to the build directory for Monero")
+if (NOT ARQMA_BUILD_DIR)
+    # set location of arqma build tree
+    set(ARQMA_BUILD_DIR ${ARQMA_SOURCE_DIR}/build/Linux/master/release/
+          CACHE PATH "Path to the build directory for Arqma")
 endif()
 
 set(MY_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}/cmake"
@@ -35,12 +35,12 @@ set(MY_CMAKE_DIR "${CMAKE_CURRENT_LIST_DIR}/cmake"
 
 list(APPEND CMAKE_MODULE_PATH "${MY_CMAKE_DIR}")
 
-set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${MONERO_BUILD_DIR}"
-        CACHE PATH "Add Monero directory for library searching")
+set(CMAKE_LIBRARY_PATH ${CMAKE_LIBRARY_PATH} "${ARQMA_BUILD_DIR}"
+        CACHE PATH "Add Arqma directory for library searching")
 
 include(MyUtils)
 
-find_package(Monero)
+find_package(Arqma)
 
 # find boost
 find_package(Boost COMPONENTS
@@ -66,7 +66,7 @@ endif()
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin" OR WIN32)
     add_library(unbound STATIC IMPORTED)
-    set_property(TARGET unbound PROPERTY IMPORTED_LOCATION ${MONERO_BUILD_DIR}/external/unbound/libunbound.a)
+    set_property(TARGET unbound PROPERTY IMPORTED_LOCATION ${ARQMA_BUILD_DIR}/external/unbound/libunbound.a)
 endif()
 
 
@@ -74,8 +74,8 @@ endif()
 # include boost headers
 include_directories(${Boost_INCLUDE_DIRS})
 
-# include monero
-include_directories(${MONERO_SOURCE_DIR}/build)
+# include arqma
+include_directories(${ARQMA_SOURCE_DIR}/build)
 
 include_directories("ext/mstch/include")
 include_directories("ext/mstch/include/src")

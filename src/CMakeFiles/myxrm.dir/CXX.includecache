@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/root/onion-monero-blockchain-explorer/ext/fmt/format.cc
+/root/onion-arqma-blockchain-explorer/ext/fmt/format.cc
 format.h
-/root/onion-monero-blockchain-explorer/ext/fmt/format.h
+/root/onion-arqma-blockchain-explorer/ext/fmt/format.h
 string.h
 -
 cctype
@@ -30,7 +30,7 @@ windows.h
 windows.h
 -
 
-/root/onion-monero-blockchain-explorer/ext/fmt/format.h
+/root/onion-arqma-blockchain-explorer/ext/fmt/format.h
 cassert
 -
 clocale
@@ -60,21 +60,21 @@ stdint.h
 intrin.h
 -
 format.cc
-/root/onion-monero-blockchain-explorer/ext/fmt/format.cc
+/root/onion-arqma-blockchain-explorer/ext/fmt/format.cc
 
-/root/onion-monero-blockchain-explorer/ext/fmt/ostream.cc
+/root/onion-arqma-blockchain-explorer/ext/fmt/ostream.cc
 ostream.h
-/root/onion-monero-blockchain-explorer/ext/fmt/ostream.h
+/root/onion-arqma-blockchain-explorer/ext/fmt/ostream.h
 
-/root/onion-monero-blockchain-explorer/ext/fmt/ostream.h
+/root/onion-arqma-blockchain-explorer/ext/fmt/ostream.h
 format.h
-/root/onion-monero-blockchain-explorer/ext/fmt/format.h
+/root/onion-arqma-blockchain-explorer/ext/fmt/format.h
 ostream
 -
 ostream.cc
-/root/onion-monero-blockchain-explorer/ext/fmt/ostream.cc
+/root/onion-arqma-blockchain-explorer/ext/fmt/ostream.cc
 
-/root/onion-monero-blockchain-explorer/ext/json.hpp
+/root/onion-arqma-blockchain-explorer/ext/json.hpp
 algorithm
 -
 array
@@ -128,11 +128,11 @@ utility
 vector
 -
 
-/root/onion-monero-blockchain-explorer/src/CmdLineOptions.cpp
+/root/onion-arqma-blockchain-explorer/src/CmdLineOptions.cpp
 CmdLineOptions.h
-/root/onion-monero-blockchain-explorer/src/CmdLineOptions.h
+/root/onion-arqma-blockchain-explorer/src/CmdLineOptions.h
 
-/root/onion-monero-blockchain-explorer/src/CmdLineOptions.h
+/root/onion-arqma-blockchain-explorer/src/CmdLineOptions.h
 iostream
 -
 string
@@ -142,13 +142,13 @@ boost/program_options.hpp
 boost/optional.hpp
 -
 
-/root/onion-monero-blockchain-explorer/src/CurrentBlockchainStatus.cpp
+/root/onion-arqma-blockchain-explorer/src/CurrentBlockchainStatus.cpp
 CurrentBlockchainStatus.h
-/root/onion-monero-blockchain-explorer/src/CurrentBlockchainStatus.h
+/root/onion-arqma-blockchain-explorer/src/CurrentBlockchainStatus.h
 
-/root/onion-monero-blockchain-explorer/src/CurrentBlockchainStatus.h
+/root/onion-arqma-blockchain-explorer/src/CurrentBlockchainStatus.h
 MicroCore.h
-/root/onion-monero-blockchain-explorer/src/MicroCore.h
+/root/onion-arqma-blockchain-explorer/src/MicroCore.h
 boost/algorithm/string.hpp
 -
 iostream
@@ -162,15 +162,15 @@ mutex
 atomic
 -
 
-/root/onion-monero-blockchain-explorer/src/MempoolStatus.cpp
+/root/onion-arqma-blockchain-explorer/src/MempoolStatus.cpp
 MempoolStatus.h
-/root/onion-monero-blockchain-explorer/src/MempoolStatus.h
+/root/onion-arqma-blockchain-explorer/src/MempoolStatus.h
 rpccalls.h
-/root/onion-monero-blockchain-explorer/src/rpccalls.h
+/root/onion-arqma-blockchain-explorer/src/rpccalls.h
 
-/root/onion-monero-blockchain-explorer/src/MempoolStatus.h
+/root/onion-arqma-blockchain-explorer/src/MempoolStatus.h
 MicroCore.h
-/root/onion-monero-blockchain-explorer/src/MicroCore.h
+/root/onion-arqma-blockchain-explorer/src/MicroCore.h
 boost/algorithm/string.hpp
 -
 iostream
@@ -184,83 +184,83 @@ mutex
 atomic
 -
 
-/root/onion-monero-blockchain-explorer/src/MicroCore.cpp
+/root/onion-arqma-blockchain-explorer/src/MicroCore.cpp
 MicroCore.h
-/root/onion-monero-blockchain-explorer/src/MicroCore.h
+/root/onion-arqma-blockchain-explorer/src/MicroCore.h
 
-/root/onion-monero-blockchain-explorer/src/MicroCore.h
+/root/onion-arqma-blockchain-explorer/src/MicroCore.h
 iostream
 -
-monero_headers.h
-/root/onion-monero-blockchain-explorer/src/monero_headers.h
+arqma_headers.h
+/root/onion-arqma-blockchain-explorer/src/arqma_headers.h
 tools.h
-/root/onion-monero-blockchain-explorer/src/tools.h
+/root/onion-arqma-blockchain-explorer/src/tools.h
 
-/root/onion-monero-blockchain-explorer/src/monero_headers.h
+/root/onion-arqma-blockchain-explorer/src/arqma_headers.h
 version.h
-/root/onion-monero-blockchain-explorer/src/version.h
+/root/onion-arqma-blockchain-explorer/src/version.h
 net/http_client.h
-/root/onion-monero-blockchain-explorer/src/net/http_client.h
+/root/onion-arqma-blockchain-explorer/src/net/http_client.h
 storages/http_abstract_invoke.h
-/root/onion-monero-blockchain-explorer/src/storages/http_abstract_invoke.h
+/root/onion-arqma-blockchain-explorer/src/storages/http_abstract_invoke.h
 cryptonote_core/tx_pool.h
-/root/onion-monero-blockchain-explorer/src/cryptonote_core/tx_pool.h
+/root/onion-arqma-blockchain-explorer/src/cryptonote_core/tx_pool.h
 cryptonote_core/blockchain.h
-/root/onion-monero-blockchain-explorer/src/cryptonote_core/blockchain.h
+/root/onion-arqma-blockchain-explorer/src/cryptonote_core/blockchain.h
 blockchain_db/lmdb/db_lmdb.h
-/root/onion-monero-blockchain-explorer/src/blockchain_db/lmdb/db_lmdb.h
+/root/onion-arqma-blockchain-explorer/src/blockchain_db/lmdb/db_lmdb.h
 device/device_default.hpp
-/root/onion-monero-blockchain-explorer/src/device/device_default.hpp
+/root/onion-arqma-blockchain-explorer/src/device/device_default.hpp
 wallet/wallet2.h
-/root/onion-monero-blockchain-explorer/src/wallet/wallet2.h
+/root/onion-arqma-blockchain-explorer/src/wallet/wallet2.h
 serialization/binary_utils.h
-/root/onion-monero-blockchain-explorer/src/serialization/binary_utils.h
+/root/onion-arqma-blockchain-explorer/src/serialization/binary_utils.h
 ringct/rctTypes.h
-/root/onion-monero-blockchain-explorer/src/ringct/rctTypes.h
+/root/onion-arqma-blockchain-explorer/src/ringct/rctTypes.h
 ringct/rctOps.h
-/root/onion-monero-blockchain-explorer/src/ringct/rctOps.h
+/root/onion-arqma-blockchain-explorer/src/ringct/rctOps.h
 ringct/rctSigs.h
-/root/onion-monero-blockchain-explorer/src/ringct/rctSigs.h
+/root/onion-arqma-blockchain-explorer/src/ringct/rctSigs.h
 easylogging++.h
-/root/onion-monero-blockchain-explorer/src/easylogging++.h
+/root/onion-arqma-blockchain-explorer/src/easylogging++.h
 common/base58.h
-/root/onion-monero-blockchain-explorer/src/common/base58.h
+/root/onion-arqma-blockchain-explorer/src/common/base58.h
 string_coding.h
-/root/onion-monero-blockchain-explorer/src/string_coding.h
+/root/onion-arqma-blockchain-explorer/src/string_coding.h
 
-/root/onion-monero-blockchain-explorer/src/rpccalls.cpp
-monero_headers.h
-/root/onion-monero-blockchain-explorer/src/monero_headers.h
+/root/onion-arqma-blockchain-explorer/src/rpccalls.cpp
+arqma_headers.h
+/root/onion-arqma-blockchain-explorer/src/arqma_headers.h
 mutex
 -
 utility
 -
 
-/root/onion-monero-blockchain-explorer/src/rpccalls.h
-monero_headers.h
-/root/onion-monero-blockchain-explorer/src/monero_headers.h
+/root/onion-arqma-blockchain-explorer/src/rpccalls.h
+arqma_headers.h
+/root/onion-arqma-blockchain-explorer/src/arqma_headers.h
 mutex
 -
 utility
 -
 
-/root/onion-monero-blockchain-explorer/src/tools.cpp
+/root/onion-arqma-blockchain-explorer/src/tools.cpp
 tools.h
-/root/onion-monero-blockchain-explorer/src/tools.h
+/root/onion-arqma-blockchain-explorer/src/tools.h
 codecvt
 -
 thread
 -
 
-/root/onion-monero-blockchain-explorer/src/tools.h
-monero_headers.h
-/root/onion-monero-blockchain-explorer/src/monero_headers.h
+/root/onion-arqma-blockchain-explorer/src/tools.h
+arqma_headers.h
+/root/onion-arqma-blockchain-explorer/src/arqma_headers.h
 ../ext/fmt/ostream.h
-/root/onion-monero-blockchain-explorer/ext/fmt/ostream.h
+/root/onion-arqma-blockchain-explorer/ext/fmt/ostream.h
 ../ext/fmt/format.h
-/root/onion-monero-blockchain-explorer/ext/fmt/format.h
+/root/onion-arqma-blockchain-explorer/ext/fmt/format.h
 ../ext/json.hpp
-/root/onion-monero-blockchain-explorer/ext/json.hpp
+/root/onion-arqma-blockchain-explorer/ext/json.hpp
 boost/lexical_cast.hpp
 -
 boost/filesystem.hpp

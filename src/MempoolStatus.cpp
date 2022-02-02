@@ -6,7 +6,7 @@
 
 #include "rpccalls.h"
 
-namespace xmreg
+namespace arqeg
 {
 
 using namespace std;
@@ -170,17 +170,17 @@ MempoolStatus::read_mempool()
         // key images of inputs
         vector<txin_to_key> input_key_imgs;
 
-        // public keys and xmr amount of outputs
+        // public keys and arq amount of outputs
         vector<pair<txout_to_key, uint64_t>> output_pub_keys;
 
-        // sum xmr in inputs and ouputs in the given tx
+        // sum arq in inputs and ouputs in the given tx
         const array<uint64_t, 4>& sum_data = summary_of_in_out_rct(
                tx, output_pub_keys, input_key_imgs);
 
 
         double tx_size =  static_cast<double>(_tx_info.blob_size)/1024.0;
 
-        double payed_for_kB = XMR_AMOUNT(_tx_info.fee) / tx_size;
+        double payed_for_kB = ARQ_AMOUNT(_tx_info.fee) / tx_size;
 
         last_tx.receive_time = _tx_info.receive_time;
 
@@ -191,13 +191,13 @@ MempoolStatus::read_mempool()
         last_tx.mixin_no          = sum_data[2];
         last_tx.num_nonrct_inputs = sum_data[3];
 
-        last_tx.fee_str          = xmreg::xmr_amount_to_str(_tx_info.fee, "{:0.4f}", false);
-        last_tx.fee_micro_str    = xmreg::xmr_amount_to_str(_tx_info.fee*1.0e6, "{:04.0f}", false);
+        last_tx.fee_str          = arqeg::arq_amount_to_str(_tx_info.fee, "{:0.4f}", false);
+        last_tx.fee_micro_str    = arqeg::arq_amount_to_str(_tx_info.fee*1.0e6, "{:04.0f}", false);
         last_tx.payed_for_kB_str = fmt::format("{:0.4f}", payed_for_kB);
         last_tx.payed_for_kB_micro_str = fmt::format("{:04.0f}", payed_for_kB*1e6);
-        last_tx.xmr_inputs_str   = xmreg::xmr_amount_to_str(last_tx.sum_inputs , "{:0.3f}");
-        last_tx.xmr_outputs_str  = xmreg::xmr_amount_to_str(last_tx.sum_outputs, "{:0.3f}");
-        last_tx.timestamp_str    = xmreg::timestamp_to_str_gm(_tx_info.receive_time);
+        last_tx.arq_inputs_str   = arqeg::arq_amount_to_str(last_tx.sum_inputs , "{:0.3f}");
+        last_tx.arq_outputs_str  = arqeg::arq_amount_to_str(last_tx.sum_outputs, "{:0.3f}");
+        last_tx.timestamp_str    = arqeg::timestamp_to_str_gm(_tx_info.receive_time);
 
         last_tx.txsize           = fmt::format("{:0.2f}", tx_size);
 
@@ -346,13 +346,13 @@ MempoolStatus::is_thread_running()
     return is_running;
 }
 
-bf::path MempoolStatus::blockchain_path {"/home/mwo/.bitmonero/lmdb"};
-string MempoolStatus::deamon_url {"http:://127.0.0.1:18081"};
+bf::path MempoolStatus::blockchain_path {"~/.arqma/lmdb"};
+string MempoolStatus::deamon_url {"http:://127.0.0.1:19994"};
 cryptonote::network_type MempoolStatus::nettype {cryptonote::network_type::MAINNET};
 atomic<bool>       MempoolStatus::is_running {false};
 boost::thread      MempoolStatus::m_thread;
 Blockchain*        MempoolStatus::core_storage {nullptr};
-xmreg::MicroCore*  MempoolStatus::mcore {nullptr};
+arqeg::MicroCore*  MempoolStatus::mcore {nullptr};
 vector<MempoolStatus::mempool_tx> MempoolStatus::mempool_txs;
 atomic<MempoolStatus::network_info> MempoolStatus::current_network_info;
 atomic<uint64_t> MempoolStatus::mempool_no {0};   // no of txs

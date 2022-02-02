@@ -11,11 +11,11 @@
 #include <regex>
 
 using boost::filesystem::path;
-using xmreg::remove_bad_chars;
+using arqeg::remove_bad_chars;
 
 using namespace std;
 
-namespace myxmr
+namespace myarq
 {
 struct jsonresponse: crow::response
 {
@@ -34,7 +34,7 @@ main(int ac, const char* av[])
 {
 
     // get command line options
-    xmreg::CmdLineOptions opts {ac, av};
+    arqeg::CmdLineOptions opts {ac, av};
 
     auto help_opt                      = opts.get_option<bool>("help");
 
@@ -91,7 +91,7 @@ main(int ac, const char* av[])
     bool enable_emission_monitor      {*enable_emission_monitor_opt};
 
 
-    // set  monero log output level
+    // set  arqma log output level
     uint32_t log_level = 0;
     mlog_configure("", true);
 
@@ -137,7 +137,7 @@ main(int ac, const char* av[])
     // get blockchain path
     path blockchain_path;
 
-    if (!xmreg::get_blockchain_path(bc_path_opt, blockchain_path, nettype))
+    if (!arqeg::get_blockchain_path(bc_path_opt, blockchain_path, nettype))
     {
         cerr << "Error getting blockchain path." << endl;
         return EXIT_FAILURE;
@@ -148,11 +148,11 @@ main(int ac, const char* av[])
 
     // create instance of our MicroCore
     // and make pointer to the Blockchain
-    xmreg::MicroCore mcore;
+    arqeg::MicroCore mcore;
     cryptonote::Blockchain* core_storage;
 
     // initialize mcore and core_storage
-    if (!xmreg::init_blockchain(blockchain_path.string(),
+    if (!arqeg::init_blockchain(blockchain_path.string(),
                                mcore, core_storage, nettype))
     {
         cerr << "Error accessing blockchain." << endl;
@@ -161,10 +161,10 @@ main(int ac, const char* av[])
 
     string deamon_url {*deamon_url_opt};
 
-    if (testnet && deamon_url == "http:://127.0.0.1:18081")
-        deamon_url = "http:://127.0.0.1:28081";
-    if (stagenet && deamon_url == "http:://127.0.0.1:18081")
-        deamon_url = "http:://127.0.0.1:38081";
+    if (testnet && deamon_url == "http:://127.0.0.1:19994")
+        deamon_url = "http:://127.0.0.1:29994";
+    if (stagenet && deamon_url == "http:://127.0.0.1:19994")
+        deamon_url = "http:://127.0.0.1:39994";
 
     uint64_t mempool_info_timeout {5000};
 
@@ -185,47 +185,47 @@ main(int ac, const char* av[])
     {
         // This starts new thread, which aim is
         // to calculate, store and monitor
-        // current total Monero emission amount.
+        // current total arqma emission amount.
 
         // This thread stores the current emission
         // which it has caluclated in
         // <blockchain_path>/emission_amount.txt file,
-        // e.g., ~/.bitmonero/lmdb/emission_amount.txt.
+        // e.g., ~/.bitarqma/lmdb/emission_amount.txt.
         // So instead of calcualting the emission
         // from scrach whenever the explorer is started,
         // the thread is initalized with the values
         // found in emission_amount.txt file.
 
-        xmreg::CurrentBlockchainStatus::blockchain_path
+        arqeg::CurrentBlockchainStatus::blockchain_path
                 = blockchain_path;
-        xmreg::CurrentBlockchainStatus::nettype
+        arqeg::CurrentBlockchainStatus::nettype
                 = nettype;
-        xmreg::CurrentBlockchainStatus::deamon_url
+        arqeg::CurrentBlockchainStatus::deamon_url
                 = deamon_url;
-        xmreg::CurrentBlockchainStatus::set_blockchain_variables(
+        arqeg::CurrentBlockchainStatus::set_blockchain_variables(
                 &mcore, core_storage);
 
         // launch the status monitoring thread so that it keeps track of blockchain
         // info, e.g., current height. Information from this thread is used
         // by tx searching threads that are launched for each user independently,
         // when they log back or create new account.
-        xmreg::CurrentBlockchainStatus::start_monitor_blockchain_thread();
+        arqeg::CurrentBlockchainStatus::start_monitor_blockchain_thread();
     }
 
 
-    xmreg::MempoolStatus::blockchain_path
+    arqeg::MempoolStatus::blockchain_path
             = blockchain_path;
-    xmreg::MempoolStatus::nettype
+    arqeg::MempoolStatus::nettype
             = nettype;
-    xmreg::MempoolStatus::deamon_url
+    arqeg::MempoolStatus::deamon_url
             = deamon_url;
-    xmreg::MempoolStatus::set_blockchain_variables(
+    arqeg::MempoolStatus::set_blockchain_variables(
             &mcore, core_storage);
 
-    xmreg::MempoolStatus::network_info initial_info;
+    arqeg::MempoolStatus::network_info initial_info;
     strcpy(initial_info.block_size_limit_str, "0.0");
     strcpy(initial_info.block_size_median_str, "0.0");
-    xmreg::MempoolStatus::current_network_info = initial_info;
+    arqeg::MempoolStatus::current_network_info = initial_info;
 
     try
     {
@@ -243,12 +243,12 @@ main(int ac, const char* av[])
     // info, e.g., current height. Information from this thread is used
     // by tx searching threads that are launched for each user independently,
     // when they log back or create new account.
-    xmreg::MempoolStatus::mempool_refresh_time = mempool_refresh_time;
-    xmreg::MempoolStatus::start_mempool_status_thread();
+    arqeg::MempoolStatus::mempool_refresh_time = mempool_refresh_time;
+    arqeg::MempoolStatus::start_mempool_status_thread();
 
     // create instance of page class which
     // contains logic for the website
-    xmreg::page xmrblocks(&mcore,
+    arqeg::page arqblocks(&mcore,
                           core_storage,
                           deamon_url,
                           nettype,
@@ -275,70 +275,70 @@ main(int ac, const char* av[])
 
     CROW_ROUTE(app, "/")
     ([&](const crow::request& req) {
-        return crow::response(xmrblocks.index2());
+        return crow::response(arqblocks.index2());
     });
 
     CROW_ROUTE(app, "/page/<uint>")
     ([&](size_t page_no) {
-        return xmrblocks.index2(page_no);
+        return arqblocks.index2(page_no);
     });
 
     CROW_ROUTE(app, "/block/<uint>")
     ([&](const crow::request& req, size_t block_height) {
-        return crow::response(xmrblocks.show_block(block_height));
+        return crow::response(arqblocks.show_block(block_height));
     });
 
     CROW_ROUTE(app, "/block/<string>")
     ([&](const crow::request& req, string block_hash) {
-        return crow::response(xmrblocks.show_block(remove_bad_chars(block_hash)));
+        return crow::response(arqblocks.show_block(remove_bad_chars(block_hash)));
     });
 
     CROW_ROUTE(app, "/tx/<string>")
     ([&](const crow::request& req, string tx_hash) {
-        return crow::response(xmrblocks.show_tx(remove_bad_chars(tx_hash)));
+        return crow::response(arqblocks.show_tx(remove_bad_chars(tx_hash)));
     });
 
     CROW_ROUTE(app, "/tx/<string>/<uint>")
     ([&](string tx_hash, uint16_t with_ring_signatures)
      {
-        return xmrblocks.show_tx(remove_bad_chars(tx_hash), with_ring_signatures);
+        return arqblocks.show_tx(remove_bad_chars(tx_hash), with_ring_signatures);
     });
     CROW_ROUTE(app, "/service_node/<string>")
     ([&](const crow::request& req, std::string service_node_pubkey) {
-        return crow::response(xmrblocks.show_service_node(remove_bad_chars(service_node_pubkey)));
+        return crow::response(arqblocks.show_service_node(remove_bad_chars(service_node_pubkey)));
     });
 
     CROW_ROUTE(app, "/service_nodes")
     ([&](const crow::request& req) {
-          return xmrblocks.render_service_nodes_html(true /*add_header_and_footer*/);
+          return arqblocks.render_service_nodes_html(true /*add_header_and_footer*/);
     });
 
     CROW_ROUTE(app, "/quorums")
     ([&](const crow::request& req) {
-        return xmrblocks.render_quorum_states_html(true /*add_header_and_footer*/);
+        return arqblocks.render_quorum_states_html(true /*add_header_and_footer*/);
     });
 
     // TODO(loki): This should be combined into the normal search mechanism, we shouldn't have 2 search bars.
     CROW_ROUTE(app, "/search_service_node").methods("GET"_method)
     ([&](const crow::request& req) {
-        return xmrblocks.show_service_node(remove_bad_chars(string(req.url_params.get("value"))));
+        return arqblocks.show_service_node(remove_bad_chars(string(req.url_params.get("value"))));
     });
     CROW_ROUTE(app, "/myoutputs").methods("POST"_method)
     ([&](const crow::request& req)
      {
 
         map<std::string, std::string> post_body
-                = xmreg::parse_crow_post_data(req.body);
+                = arqeg::parse_crow_post_data(req.body);
 
-        if (post_body.count("xmr_address") == 0
+        if (post_body.count("arq_address") == 0
             || post_body.count("viewkey") == 0
             || post_body.count("tx_hash") == 0)
         {
-            return string("xmr address, viewkey or tx hash not provided");
+            return string("arq address, viewkey or tx hash not provided");
         }
 
         string tx_hash     = remove_bad_chars(post_body["tx_hash"]);
-        string xmr_address = remove_bad_chars(post_body["xmr_address"]);
+        string arq_address = remove_bad_chars(post_body["arq_address"]);
         string viewkey     = remove_bad_chars(post_body["viewkey"]);
 
         // this will be only not empty when checking raw tx data
@@ -347,20 +347,20 @@ main(int ac, const char* av[])
 
         string domain      =  get_domain(req);
 
-        return xmrblocks.show_my_outputs(tx_hash, xmr_address,
+        return arqblocks.show_my_outputs(tx_hash, arq_address,
                                          viewkey, raw_tx_data,
                                          domain);
     });
 
     CROW_ROUTE(app, "/myoutputs/<string>/<string>/<string>")
     ([&](const crow::request& req, string tx_hash,
-        string xmr_address, string viewkey)
+        string arq_address, string viewkey)
      {
 
         string domain = get_domain(req);
 
-        return xmrblocks.show_my_outputs(remove_bad_chars(tx_hash),
-                                         remove_bad_chars(xmr_address),
+        return arqblocks.show_my_outputs(remove_bad_chars(tx_hash),
+                                         remove_bad_chars(arq_address),
                                          remove_bad_chars(viewkey),
                                          string {},
                                          domain);
@@ -370,19 +370,19 @@ main(int ac, const char* av[])
         ([&](const crow::request& req) {
 
             map<std::string, std::string> post_body
-                    = xmreg::parse_crow_post_data(req.body);
+                    = arqeg::parse_crow_post_data(req.body);
 
-            if (post_body.count("xmraddress") == 0
+            if (post_body.count("arqaddress") == 0
                 || post_body.count("txprvkey") == 0
                 || post_body.count("txhash") == 0)
             {
-                return string("xmr address, tx private key or "
+                return string("arq address, tx private key or "
                                       "tx hash not provided");
             }
 
             string tx_hash     = remove_bad_chars(post_body["txhash"]);
             string tx_prv_key  = remove_bad_chars(post_body["txprvkey"]);
-            string xmr_address = remove_bad_chars(post_body["xmraddress"]);
+            string arq_address = remove_bad_chars(post_body["arqaddress"]);
 
             // this will be only not empty when checking raw tx data
             // using tx pusher
@@ -390,8 +390,8 @@ main(int ac, const char* av[])
 
             string domain      = get_domain(req);
 
-            return xmrblocks.show_prove(tx_hash,
-                                        xmr_address,
+            return arqblocks.show_prove(tx_hash,
+                                        arq_address,
                                         tx_prv_key,
                                         raw_tx_data,
                                         domain);
@@ -400,12 +400,12 @@ main(int ac, const char* av[])
 
     CROW_ROUTE(app, "/prove/<string>/<string>/<string>")
     ([&](const crow::request& req, string tx_hash,
-         string xmr_address, string tx_prv_key) {
+         string arq_address, string tx_prv_key) {
 
         string domain = get_domain(req);
 
-        return xmrblocks.show_prove(remove_bad_chars(tx_hash),
-                                    remove_bad_chars(xmr_address),
+        return arqblocks.show_prove(remove_bad_chars(tx_hash),
+                                    remove_bad_chars(arq_address),
                                     remove_bad_chars(tx_prv_key),
                                     string {},
                                     domain);
@@ -415,14 +415,14 @@ main(int ac, const char* av[])
     {
         CROW_ROUTE(app, "/rawtx")
         ([&](const crow::request& req) {
-            return xmrblocks.show_rawtx();
+            return arqblocks.show_rawtx();
         });
 
         CROW_ROUTE(app, "/checkandpush").methods("POST"_method)
         ([&](const crow::request& req) {
 
             map<std::string, std::string> post_body
-                    = xmreg::parse_crow_post_data(req.body);
+                    = arqeg::parse_crow_post_data(req.body);
 
             if (post_body.count("rawtxdata") == 0 || post_body.count("action") == 0)
             {
@@ -433,9 +433,9 @@ main(int ac, const char* av[])
             string action      = remove_bad_chars(post_body["action"]);
 
             if (action == "check")
-                return xmrblocks.show_checkrawtx(raw_tx_data, action);
+                return arqblocks.show_checkrawtx(raw_tx_data, action);
             else if (action == "push")
-                return xmrblocks.show_pushrawtx(raw_tx_data, action);
+                return arqblocks.show_pushrawtx(raw_tx_data, action);
             return string("Provided action is neither check nor push");
 
         });
@@ -445,14 +445,14 @@ main(int ac, const char* av[])
     {
         CROW_ROUTE(app, "/rawkeyimgs")
         ([&](const crow::request& req) {
-            return xmrblocks.show_rawkeyimgs();
+            return arqblocks.show_rawkeyimgs();
         });
 
         CROW_ROUTE(app, "/checkrawkeyimgs").methods("POST"_method)
         ([&](const crow::request& req) {
 
             map<std::string, std::string> post_body
-                    = xmreg::parse_crow_post_data(req.body);
+                    = arqeg::parse_crow_post_data(req.body);
 
             if (post_body.count("rawkeyimgsdata") == 0)
             {
@@ -467,7 +467,7 @@ main(int ac, const char* av[])
             string raw_data = remove_bad_chars(post_body["rawkeyimgsdata"]);
             string viewkey  = remove_bad_chars(post_body["viewkey"]);
 
-            return xmrblocks.show_checkrawkeyimgs(raw_data, viewkey);
+            return arqblocks.show_checkrawkeyimgs(raw_data, viewkey);
         });
     }
 
@@ -476,14 +476,14 @@ main(int ac, const char* av[])
     {
         CROW_ROUTE(app, "/rawoutputkeys")
         ([&](const crow::request& req) {
-            return xmrblocks.show_rawoutputkeys();
+            return arqblocks.show_rawoutputkeys();
         });
 
         CROW_ROUTE(app, "/checkrawoutputkeys").methods("POST"_method)
         ([&](const crow::request& req) {
 
             map<std::string, std::string> post_body
-                    = xmreg::parse_crow_post_data(req.body);
+                    = arqeg::parse_crow_post_data(req.body);
 
             if (post_body.count("rawoutputkeysdata") == 0)
             {
@@ -499,30 +499,30 @@ main(int ac, const char* av[])
             string raw_data = remove_bad_chars(post_body["rawoutputkeysdata"]);
             string viewkey  = remove_bad_chars(post_body["viewkey"]);
 
-            return xmrblocks.show_checkcheckrawoutput(raw_data, viewkey);
+            return arqblocks.show_checkcheckrawoutput(raw_data, viewkey);
         });
     }
 
 
     CROW_ROUTE(app, "/search").methods("GET"_method)
     ([&](const crow::request& req) {
-        return xmrblocks.search(remove_bad_chars(string(req.url_params.get("value"))));
+        return arqblocks.search(remove_bad_chars(string(req.url_params.get("value"))));
     });
 
     CROW_ROUTE(app, "/mempool")
     ([&](const crow::request& req) {
-        return xmrblocks.mempool(true);
+        return arqblocks.mempool(true);
     });
 
     // alias to  "/mempool"
     CROW_ROUTE(app, "/txpool")
     ([&](const crow::request& req) {
-        return xmrblocks.mempool(true);
+        return arqblocks.mempool(true);
     });
 
 //    CROW_ROUTE(app, "/altblocks")
 //    ([&](const crow::request& req) {
-//        return xmrblocks.altblocks();
+//        return arqblocks.altblocks();
 //    });
 
     CROW_ROUTE(app, "/robots.txt")
@@ -540,7 +540,7 @@ main(int ac, const char* av[])
         CROW_ROUTE(app, "/api/transaction/<string>")
         ([&](const crow::request &req, string tx_hash) {
 
-            myxmr::jsonresponse r{xmrblocks.json_transaction(remove_bad_chars(tx_hash))};
+            myarq::jsonresponse r{arqblocks.json_transaction(remove_bad_chars(tx_hash))};
 
             return r;
         });
@@ -548,7 +548,7 @@ main(int ac, const char* av[])
         CROW_ROUTE(app, "/api/rawtransaction/<string>")
         ([&](const crow::request &req, string tx_hash) {
 
-            myxmr::jsonresponse r{xmrblocks.json_rawtransaction(remove_bad_chars(tx_hash))};
+            myarq::jsonresponse r{arqblocks.json_rawtransaction(remove_bad_chars(tx_hash))};
 
             return r;
         });
@@ -556,7 +556,7 @@ main(int ac, const char* av[])
         CROW_ROUTE(app, "/api/block/<string>")
         ([&](const crow::request &req, string block_no_or_hash) {
 
-            myxmr::jsonresponse r{xmrblocks.json_block(remove_bad_chars(block_no_or_hash))};
+            myarq::jsonresponse r{arqblocks.json_block(remove_bad_chars(block_no_or_hash))};
 
             return r;
         });
@@ -564,7 +564,7 @@ main(int ac, const char* av[])
         CROW_ROUTE(app, "/api/rawblock/<string>")
         ([&](const crow::request &req, string block_no_or_hash) {
 
-            myxmr::jsonresponse r{xmrblocks.json_rawblock(remove_bad_chars(block_no_or_hash))};
+            myarq::jsonresponse r{arqblocks.json_rawblock(remove_bad_chars(block_no_or_hash))};
 
             return r;
         });
@@ -578,7 +578,7 @@ main(int ac, const char* av[])
             string limit = regex_search(req.raw_url, regex {"limit=\\d+"}) ?
                            req.url_params.get("limit") : "25";
 
-            myxmr::jsonresponse r{xmrblocks.json_transactions(
+            myarq::jsonresponse r{arqblocks.json_transactions(
                     remove_bad_chars(page), remove_bad_chars(limit))};
 
             return r;
@@ -596,7 +596,7 @@ main(int ac, const char* av[])
             string limit = regex_search(req.raw_url, regex {"limit=\\d+"}) ?
                            req.url_params.get("limit") : "100000000";
 
-            myxmr::jsonresponse r{xmrblocks.json_mempool(
+            myarq::jsonresponse r{arqblocks.json_mempool(
                     remove_bad_chars(page), remove_bad_chars(limit))};
 
             return r;
@@ -605,7 +605,7 @@ main(int ac, const char* av[])
         CROW_ROUTE(app, "/api/search/<string>")
         ([&](const crow::request &req, string search_value) {
 
-            myxmr::jsonresponse r{xmrblocks.json_search(remove_bad_chars(search_value))};
+            myarq::jsonresponse r{arqblocks.json_search(remove_bad_chars(search_value))};
 
             return r;
         });
@@ -613,7 +613,7 @@ main(int ac, const char* av[])
         CROW_ROUTE(app, "/api/networkinfo")
         ([&](const crow::request &req) {
 
-            myxmr::jsonresponse r{xmrblocks.json_networkinfo()};
+            myarq::jsonresponse r{arqblocks.json_networkinfo()};
 
             return r;
         });
@@ -621,7 +621,7 @@ main(int ac, const char* av[])
         CROW_ROUTE(app, "/api/emission")
         ([&](const crow::request &req) {
 
-            myxmr::jsonresponse r{xmrblocks.json_emission()};
+            myarq::jsonresponse r{arqblocks.json_emission()};
 
             return r;
         });
@@ -651,7 +651,7 @@ main(int ac, const char* av[])
                 cerr << "Cant parse tx_prove as bool. Using default value" << endl;
             }
 
-            myxmr::jsonresponse r{xmrblocks.json_outputs(
+            myarq::jsonresponse r{arqblocks.json_outputs(
                     remove_bad_chars(tx_hash),
                     remove_bad_chars(address),
                     remove_bad_chars(viewkey),
@@ -685,7 +685,7 @@ main(int ac, const char* av[])
                 cerr << "Cant parse tx_prove as bool. Using default value" << endl;
             }
 
-            myxmr::jsonresponse r{xmrblocks.json_outputsblocks(
+            myarq::jsonresponse r{arqblocks.json_outputsblocks(
                     remove_bad_chars(limit),
                     remove_bad_chars(address),
                     remove_bad_chars(viewkey),
@@ -697,7 +697,7 @@ main(int ac, const char* av[])
         CROW_ROUTE(app, "/api/version")
         ([&](const crow::request &req) {
 
-            myxmr::jsonresponse r{xmrblocks.json_version()};
+            myarq::jsonresponse r{arqblocks.json_version()};
 
             return r;
         });
@@ -710,7 +710,7 @@ main(int ac, const char* av[])
         ([&]() {
             uint64_t page_no {0};
             bool refresh_page {true};
-            return xmrblocks.index2(page_no, refresh_page);
+            return arqblocks.index2(page_no, refresh_page);
         });
     }
 
@@ -735,8 +735,8 @@ main(int ac, const char* av[])
 
         cout << "Waiting for emission monitoring thread to finish." << endl;
 
-        xmreg::CurrentBlockchainStatus::m_thread.interrupt();
-        xmreg::CurrentBlockchainStatus::m_thread.join();
+        arqeg::CurrentBlockchainStatus::m_thread.interrupt();
+        arqeg::CurrentBlockchainStatus::m_thread.join();
 
         cout << "Emission monitoring thread finished." << endl;
     }
@@ -745,8 +745,8 @@ main(int ac, const char* av[])
 
     cout << "Waiting for mempool monitoring thread to finish." << endl;
 
-    xmreg::MempoolStatus::m_thread.interrupt();
-    xmreg::MempoolStatus::m_thread.join();
+    arqeg::MempoolStatus::m_thread.interrupt();
+    arqeg::MempoolStatus::m_thread.join();
 
     cout << "Mempool monitoring thread finished." << endl;
 

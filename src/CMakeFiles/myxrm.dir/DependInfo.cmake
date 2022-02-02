@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/root/onion-monero-blockchain-explorer/src/CmdLineOptions.cpp" "/root/onion-monero-blockchain-explorer/src/CMakeFiles/myxrm.dir/CmdLineOptions.cpp.o"
-  "/root/onion-monero-blockchain-explorer/src/CurrentBlockchainStatus.cpp" "/root/onion-monero-blockchain-explorer/src/CMakeFiles/myxrm.dir/CurrentBlockchainStatus.cpp.o"
-  "/root/onion-monero-blockchain-explorer/src/MempoolStatus.cpp" "/root/onion-monero-blockchain-explorer/src/CMakeFiles/myxrm.dir/MempoolStatus.cpp.o"
-  "/root/onion-monero-blockchain-explorer/src/MicroCore.cpp" "/root/onion-monero-blockchain-explorer/src/CMakeFiles/myxrm.dir/MicroCore.cpp.o"
-  "/root/onion-monero-blockchain-explorer/src/rpccalls.cpp" "/root/onion-monero-blockchain-explorer/src/CMakeFiles/myxrm.dir/rpccalls.cpp.o"
-  "/root/onion-monero-blockchain-explorer/src/tools.cpp" "/root/onion-monero-blockchain-explorer/src/CMakeFiles/myxrm.dir/tools.cpp.o"
+  "/root/onion-arqma-blockchain-explorer/src/CmdLineOptions.cpp" "/root/onion-arqma-blockchain-explorer/src/CMakeFiles/myxrm.dir/CmdLineOptions.cpp.o"
+  "/root/onion-arqma-blockchain-explorer/src/CurrentBlockchainStatus.cpp" "/root/onion-arqma-blockchain-explorer/src/CMakeFiles/myxrm.dir/CurrentBlockchainStatus.cpp.o"
+  "/root/onion-arqma-blockchain-explorer/src/MempoolStatus.cpp" "/root/onion-arqma-blockchain-explorer/src/CMakeFiles/myxrm.dir/MempoolStatus.cpp.o"
+  "/root/onion-arqma-blockchain-explorer/src/MicroCore.cpp" "/root/onion-arqma-blockchain-explorer/src/CMakeFiles/myxrm.dir/MicroCore.cpp.o"
+  "/root/onion-arqma-blockchain-explorer/src/rpccalls.cpp" "/root/onion-arqma-blockchain-explorer/src/CMakeFiles/myxrm.dir/rpccalls.cpp.o"
+  "/root/onion-arqma-blockchain-explorer/src/tools.cpp" "/root/onion-arqma-blockchain-explorer/src/CMakeFiles/myxrm.dir/tools.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

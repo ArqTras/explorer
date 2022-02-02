@@ -12,7 +12,7 @@ src/CMakeFiles/myxrm.dir/CurrentBlockchainStatus.cpp.o: ext/json.hpp
 src/CMakeFiles/myxrm.dir/CurrentBlockchainStatus.cpp.o: src/CurrentBlockchainStatus.cpp
 src/CMakeFiles/myxrm.dir/CurrentBlockchainStatus.cpp.o: src/CurrentBlockchainStatus.h
 src/CMakeFiles/myxrm.dir/CurrentBlockchainStatus.cpp.o: src/MicroCore.h
-src/CMakeFiles/myxrm.dir/CurrentBlockchainStatus.cpp.o: src/monero_headers.h
+src/CMakeFiles/myxrm.dir/CurrentBlockchainStatus.cpp.o: src/arqma_headers.h
 src/CMakeFiles/myxrm.dir/CurrentBlockchainStatus.cpp.o: src/tools.h
 
 src/CMakeFiles/myxrm.dir/MempoolStatus.cpp.o: ext/fmt/format.cc
@@ -23,7 +23,7 @@ src/CMakeFiles/myxrm.dir/MempoolStatus.cpp.o: ext/json.hpp
 src/CMakeFiles/myxrm.dir/MempoolStatus.cpp.o: src/MempoolStatus.cpp
 src/CMakeFiles/myxrm.dir/MempoolStatus.cpp.o: src/MempoolStatus.h
 src/CMakeFiles/myxrm.dir/MempoolStatus.cpp.o: src/MicroCore.h
-src/CMakeFiles/myxrm.dir/MempoolStatus.cpp.o: src/monero_headers.h
+src/CMakeFiles/myxrm.dir/MempoolStatus.cpp.o: src/arqma_headers.h
 src/CMakeFiles/myxrm.dir/MempoolStatus.cpp.o: src/rpccalls.h
 src/CMakeFiles/myxrm.dir/MempoolStatus.cpp.o: src/tools.h
 
@@ -34,10 +34,10 @@ src/CMakeFiles/myxrm.dir/MicroCore.cpp.o: ext/fmt/ostream.h
 src/CMakeFiles/myxrm.dir/MicroCore.cpp.o: ext/json.hpp
 src/CMakeFiles/myxrm.dir/MicroCore.cpp.o: src/MicroCore.cpp
 src/CMakeFiles/myxrm.dir/MicroCore.cpp.o: src/MicroCore.h
-src/CMakeFiles/myxrm.dir/MicroCore.cpp.o: src/monero_headers.h
+src/CMakeFiles/myxrm.dir/MicroCore.cpp.o: src/arqma_headers.h
 src/CMakeFiles/myxrm.dir/MicroCore.cpp.o: src/tools.h
 
-src/CMakeFiles/myxrm.dir/rpccalls.cpp.o: src/monero_headers.h
+src/CMakeFiles/myxrm.dir/rpccalls.cpp.o: src/arqma_headers.h
 src/CMakeFiles/myxrm.dir/rpccalls.cpp.o: src/rpccalls.cpp
 
 src/CMakeFiles/myxrm.dir/tools.cpp.o: ext/fmt/format.cc
@@ -45,7 +45,7 @@ src/CMakeFiles/myxrm.dir/tools.cpp.o: ext/fmt/format.h
 src/CMakeFiles/myxrm.dir/tools.cpp.o: ext/fmt/ostream.cc
 src/CMakeFiles/myxrm.dir/tools.cpp.o: ext/fmt/ostream.h
 src/CMakeFiles/myxrm.dir/tools.cpp.o: ext/json.hpp
-src/CMakeFiles/myxrm.dir/tools.cpp.o: src/monero_headers.h
+src/CMakeFiles/myxrm.dir/tools.cpp.o: src/arqma_headers.h
 src/CMakeFiles/myxrm.dir/tools.cpp.o: src/tools.cpp
 src/CMakeFiles/myxrm.dir/tools.cpp.o: src/tools.h
 
