@@ -4,7 +4,7 @@
 
 #include "CurrentBlockchainStatus.h"
 
-namespace xmreg
+namespace arqeg
 {
 
 using namespace std;
@@ -192,7 +192,7 @@ CurrentBlockchainStatus::load_current_emission_amount()
 {
     string emmision_saved_file = get_output_file_path().string();
 
-    string last_saved_emmision = xmreg::read(emmision_saved_file);
+    string last_saved_emmision = arqeg::read(emmision_saved_file);
 
     if (last_saved_emmision.empty())
     {
@@ -299,7 +299,7 @@ CurrentBlockchainStatus::is_thread_running()
    return is_running;
 }
 
-bf::path CurrentBlockchainStatus::blockchain_path {"/home/mwo/.bitmonero/lmdb"};
+bf::path CurrentBlockchainStatus::blockchain_path {"~/.arqma/lmdb"};
 
 cryptonote::network_type CurrentBlockchainStatus::nettype {cryptonote::network_type::MAINNET};
 
@@ -320,5 +320,5 @@ boost::thread      CurrentBlockchainStatus::m_thread;
 atomic<bool>     CurrentBlockchainStatus::is_running {false};
 
 Blockchain*       CurrentBlockchainStatus::core_storage {nullptr};
-xmreg::MicroCore*  CurrentBlockchainStatus::mcore {nullptr};
+arqeg::MicroCore*  CurrentBlockchainStatus::mcore {nullptr};
 }

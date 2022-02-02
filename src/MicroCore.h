@@ -2,15 +2,15 @@
 // Created by mwo on 5/11/15.
 //
 
-#ifndef XMREG01_MICROCORE_H
-#define XMREG01_MICROCORE_H
+#ifndef ARQEG01_MICROCORE_H
+#define ARQEG01_MICROCORE_H
 
 #include <iostream>
 
-#include "monero_headers.h"
+#include "arqma_headers.h"
 #include "tools.h"
 
-namespace xmreg
+namespace arqeg
 {
     using namespace cryptonote;
     using namespace crypto;
@@ -31,7 +31,7 @@ namespace xmreg
         Blockchain m_blockchain_storage;
         tx_memory_pool m_mempool;
         service_nodes::service_node_list m_service_node_list;
-        triton::deregister_vote_pool m_deregister_vote_pool;
+        arqma::deregister_vote_pool m_deregister_vote_pool;
         hw::device* m_device;
 
         network_type nettype;
@@ -91,4 +91,4 @@ namespace xmreg
 
 
 
-#endif //XMREG01_MICROCORE_H
+#endif //ARQEG01_MICROCORE_H

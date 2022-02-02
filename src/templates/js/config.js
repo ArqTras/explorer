@@ -1,12 +1,12 @@
 var config = {
     testnet: false, // this is adjusted page.h if needed. dont need to change manually
     stagenet: false, // this is adjusted page.h if needed. dont need to change manually
-    coinUnitPlaces: 4,
-    txMinConfirms: 0,         // corresponds to CRYPTONOTE_DEFAULT_TX_SPENDABLE_AGE in Monero
-    txCoinbaseMinConfirms: 60, // corresponds to CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW in Monero
-    coinSymbol: 'XTRI',
+    coinUnitPlaces: 9,
+    txMinConfirms: 0,         // corresponds to CRYPTONOTE_DEFAULT_TX_SPENDABLE_AGE in Arqma
+    txCoinbaseMinConfirms: 60, // corresponds to CRYPTONOTE_MINED_MONEY_UNLOCK_WINDOW in Arqma
+    coinSymbol: 'ARQ',
     openAliasPrefix: "xtri",
-    coinName: 'Triton',
+    coinName: 'Arqma',
     coinUriPrefix: 'triton:',
     addressPrefix: 289,
     integratedAddressPrefix: 0x629f,

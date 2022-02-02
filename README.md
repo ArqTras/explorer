@@ -69,7 +69,7 @@ make
 
 To run it:
 ```
-./e_exp
+./arq_exp
 ```
 
 Equilibria Blockchain Explorer:

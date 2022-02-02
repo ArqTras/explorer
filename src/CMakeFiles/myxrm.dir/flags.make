@@ -6,5 +6,5 @@ CXX_FLAGS =   -std=gnu++11
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/root/TP./src -I/root/TP./external -I/root/TP./build -I/root/TP./external/easylogging++ -I/root/TP./contrib/epee/include -I/root/TP./external/db_drivers/liblmdb -I/root/onion-monero-blockchain-explorer/ext/mstch/include -I/root/onion-monero-blockchain-explorer/ext/crow 
+CXX_INCLUDES = -I/root/TP./src -I/root/TP./external -I/root/TP./build -I/root/TP./external/easylogging++ -I/root/TP./contrib/epee/include -I/root/TP./external/db_drivers/liblmdb -I/root/onion-arqma-blockchain-explorer/ext/mstch/include -I/root/onion-arqma-blockchain-explorer/ext/crow 
 
